@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,23 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				apple: {
+					'red': '#FF3B30',
+					'orange': '#FF9500',
+					'yellow': '#FFCC00',
+					'green': '#34C759',
+					'teal': '#5AC8FA',
+					'blue': '#007AFF',
+					'indigo': '#5856D6',
+					'purple': '#AF52DE',
+					'pink': '#FF2D55',
+					'gray': '#8E8E93',
+					'gray2': '#AEAEB2',
+					'gray3': '#C7C7CC',
+					'gray4': '#D1D1D6',
+					'gray5': '#E5E5EA',
+					'gray6': '#F2F2F7'
 				}
 			},
 			borderRadius: {
@@ -84,11 +102,29 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'fade-out': {
+					'0%': { opacity: '1' },
+					'100%': { opacity: '0' }
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out'
+			},
+			fontFamily: {
+				'sans': ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif']
 			}
 		}
 	},
