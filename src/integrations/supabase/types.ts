@@ -9,7 +9,75 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      calendar_pdfs: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          name: string
+          url: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          url: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          all_day: boolean | null
+          category: string
+          color: string
+          created_at: string | null
+          date: string
+          description: string | null
+          end_date: string | null
+          id: string
+          location: string | null
+          pdf_url: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          all_day?: boolean | null
+          category: string
+          color: string
+          created_at?: string | null
+          date: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          location?: string | null
+          pdf_url?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          all_day?: boolean | null
+          category?: string
+          color?: string
+          created_at?: string | null
+          date?: string
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          location?: string | null
+          pdf_url?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { CalendarEvent } from '@/context/EventContext';
 import { cn } from '@/lib/utils';
 
@@ -11,8 +12,8 @@ interface EventListProps {
 const EventList: React.FC<EventListProps> = ({ events }) => {
   if (events.length === 0) {
     return (
-      <div className="py-6 text-center text-apple-gray">
-        No events scheduled for this day
+      <div className="py-6 text-center text-gray-500 dark:text-gray-400">
+        Nenhum evento programado para este dia
       </div>
     );
   }
@@ -26,20 +27,21 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       {sortedEvents.map(event => (
         <div 
           key={event.id}
-          className="flex p-3 rounded-lg bg-white border border-apple-gray5 hover:bg-apple-gray6/50 transition-colors"
+          className="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
         >
           <div className={cn("w-1 rounded-full mr-3", event.color)} />
           <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between">
-              <h4 className="font-medium truncate text-sm">{event.title}</h4>
+            <h4 className="font-medium text-sm dark:text-white">{event.title}</h4>
+            <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
               {event.date.getHours() > 0 && (
-                <span className="text-xs text-apple-gray ml-2">
-                  {format(event.date, 'h:mm a')}
-                </span>
+                <span>{format(event.date, 'HH:mm', { locale: ptBR })}</span>
+              )}
+              {event.location && (
+                <span className="ml-2">📍 {event.location}</span>
               )}
             </div>
             {event.description && (
-              <p className="text-xs text-apple-gray mt-1 line-clamp-2">{event.description}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{event.description}</p>
             )}
           </div>
         </div>
