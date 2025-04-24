@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, isToday } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -33,11 +32,22 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
         return;
       }
 
-      setEvents(data.map(event => ({
-        ...event,
+      const calendarEvents = data.map(event => ({
+        id: event.id,
+        title: event.title,
         date: new Date(event.date),
-        end_date: event.end_date ? new Date(event.end_date) : undefined
-      })));
+        end_date: event.end_date ? new Date(event.end_date) : undefined,
+        category: event.category as EventCategory,
+        color: event.color,
+        description: event.description || undefined,
+        location: event.location || undefined,
+        all_day: event.all_day || false,
+        pdf_url: event.pdf_url || undefined,
+        created_at: event.created_at || undefined,
+        updated_at: event.updated_at || undefined
+      })) as CalendarEvent[];
+
+      setEvents(calendarEvents);
     };
 
     fetchEvents();

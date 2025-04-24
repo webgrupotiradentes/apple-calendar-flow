@@ -29,20 +29,22 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
           key={event.id}
           className="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
         >
-          <div className={cn("w-1 rounded-full mr-3", event.color)} />
-          <div className="flex-1 min-w-0">
-            <h4 className="font-medium text-sm dark:text-white">{event.title}</h4>
-            <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
-              {event.date.getHours() > 0 && (
-                <span>{format(event.date, 'HH:mm', { locale: ptBR })}</span>
-              )}
-              {event.location && (
-                <span className="ml-2">📍 {event.location}</span>
+          <div className="flex">
+            <div className={cn("w-1 h-full rounded-full mr-3", event.color)} />
+            <div className="flex-1 min-w-0">
+              <h4 className="font-medium text-sm dark:text-white">{event.title}</h4>
+              <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-1">
+                {event.date.getHours() > 0 && (
+                  <span>{format(event.date, 'HH:mm', { locale: ptBR })}</span>
+                )}
+                {event.location && (
+                  <span className="ml-2">📍 {event.location}</span>
+                )}
+              </div>
+              {event.description && (
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{event.description}</p>
               )}
             </div>
-            {event.description && (
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{event.description}</p>
-            )}
           </div>
         </div>
       ))}

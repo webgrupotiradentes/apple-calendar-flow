@@ -10,6 +10,12 @@ export interface CalendarEvent {
   category: EventCategory;
   color: string;
   description?: string;
+  location?: string;
+  end_date?: Date;
+  all_day?: boolean;
+  pdf_url?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 interface EventContextType {
