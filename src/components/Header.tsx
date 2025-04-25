@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import LogoUnit from '../assets/marcaunit.png'
 
 const Header: React.FC = () => {
   return (
@@ -79,7 +80,12 @@ const Header: React.FC = () => {
             strokeLinecap="round"
           />
         </svg>
-        <h1 className="text-xl font-medium">Calendar Flow</h1>
+        <div>
+          <img src={LogoUnit} />         </div>
+        <h1 className="text-xl font-light">
+          Calendário Letivo
+        </h1>
+
       </div>
       <Link to="/admin">
         <Button variant="outline">Admin Portal</Button>

@@ -25,9 +25,9 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
   return (
     <div className="space-y-2">
       {sortedEvents.map(event => (
-        <div 
+        <div
           key={event.id}
-          className="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
+          className="p-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 card-detalhes"
         >
           <div className="flex">
             <div className={cn("w-1 h-full rounded-full mr-3", event.color)} />
