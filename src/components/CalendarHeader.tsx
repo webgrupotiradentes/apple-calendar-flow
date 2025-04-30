@@ -50,38 +50,48 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
       <div className="flex items-center gap-2">
-        <CalendarIcon className="h-5 w-5 text-apple-blue dark:text-blue-400" />
-        <h2 className="text-lg font-medium dark:text-white">Calendário</h2>
+        <CalendarIcon className="h-6 w-6 text-blue-600" />
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Calendário</h2>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 flex-wrap">
         <ViewSelector currentView={currentView} onViewChange={onViewChange} />
         <Button
           variant="outline"
           size="sm"
           onClick={handleDownloadPDF}
-          className="gap-2"
+          className="gap-2 border-gray-300"
         >
           <Download className="h-4 w-4" />
           PDF
         </Button>
-        <div className="flex items-center">
+        <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
           <Button
             variant="ghost"
             size="sm"
             onClick={goToToday}
-            className="text-apple-blue dark:text-blue-400"
+            className="text-blue-600 dark:text-blue-400 hover:bg-white dark:hover:bg-gray-700 rounded-md"
           >
             Hoje
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
+            className="text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 rounded-md"
+          >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <span className="mx-2 font-medium dark:text-white">
+          <span className="mx-2 font-medium text-gray-800 dark:text-white">
             {format(currentMonth, "MMMM yyyy", { locale: ptBR })}
           </span>
-          <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+            className="text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 rounded-md"
+          >
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
