@@ -1,17 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import { format, addMonths, subMonths, isToday } from 'date-fns';
+import { isToday } from 'date-fns';
+import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Download } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { CalendarEvent, EventCategory } from '@/context/EventContext';
 import EventList from './EventList';
-import ViewSelector from './ViewSelector';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import DayView from './DayView';
 import MonthView from './MonthView';
 import YearView from './YearView';
+import CalendarHeader from './CalendarHeader';
 
 interface CalendarProps {
   selectedCategories: EventCategory[];
@@ -63,7 +62,7 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
         description: format(selectedDate, "dd 'de' MMMM',' yyyy", { locale: ptBR }),
       });
     }
-  }, [selectedDate]);
+  }, [selectedDate, toast]);
 
   const getFilteredEventsForDay = (day: Date): CalendarEvent[] => {
     return events.filter(event =>
@@ -72,25 +71,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
       new Date(event.date).getFullYear() === day.getFullYear() &&
       (selectedCategories.length === 0 || selectedCategories.includes(event.category))
     );
-  };
-
-  const handleDownloadPDF = async () => {
-    const { data, error } = await supabase
-      .from('calendar_pdfs')
-      .select('url')
-      .limit(1)
-      .single();
-
-    if (error || !data?.url) {
-      toast({
-        title: "Erro",
-        description: "PDF do calendário não encontrado",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    window.open(data.url, '_blank');
   };
 
   const renderView = () => {
@@ -130,46 +110,13 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
   return (
     <div className="flex h-[calc(100vh-20rem)] bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden">
       <div className="flex-1 p-4 flex flex-col">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <CalendarIcon className="h-5 w-5 text-apple-blue dark:text-blue-400" />
-            <h2 className="text-lg font-medium dark:text-white">Calendário</h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <ViewSelector currentView={currentView} onViewChange={setCurrentView} />
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleDownloadPDF}
-              className="gap-2"
-            >
-              <Download className="h-4 w-4" />
-              PDF
-            </Button>
-            <div className="flex items-center">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setCurrentMonth(new Date());
-                  setSelectedDate(new Date());
-                }}
-                className="text-apple-blue dark:text-blue-400"
-              >
-                Hoje
-              </Button>
-              <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <span className="mx-2 font-medium dark:text-white">
-                {format(currentMonth, "MMMM yyyy", { locale: ptBR })}
-              </span>
-              <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
+        <CalendarHeader
+          currentMonth={currentMonth}
+          setCurrentMonth={setCurrentMonth}
+          setSelectedDate={setSelectedDate}
+          currentView={currentView}
+          onViewChange={setCurrentView}
+        />
 
         {renderView()}
       </div>
