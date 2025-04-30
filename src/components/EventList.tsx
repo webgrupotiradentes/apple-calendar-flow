@@ -13,7 +13,7 @@ interface EventListProps {
 const EventList: React.FC<EventListProps> = ({ events }) => {
   if (events.length === 0) {
     return (
-      <div className="py-6 text-center text-gray-500 dark:text-gray-400">
+      <div className="py-4 text-center text-gray-500 dark:text-gray-400">
         <p className="text-sm">Nenhum evento programado para este dia</p>
       </div>
     );
@@ -24,7 +24,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
   );
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {sortedEvents.map(event => (
         <Card
           key={event.id}

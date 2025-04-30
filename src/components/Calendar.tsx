@@ -108,8 +108,8 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-20rem)] bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-800">
-      <div className="flex-1 p-6 flex flex-col">
+    <div className="flex h-[calc(100vh-7.5rem)] bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden border border-gray-100 dark:border-gray-800 mx-2">
+      <div className="flex-1 px-4 py-3 flex flex-col">
         <CalendarHeader
           currentMonth={currentMonth}
           setCurrentMonth={setCurrentMonth}
@@ -118,13 +118,13 @@ const Calendar: React.FC<CalendarProps> = ({ selectedCategories }) => {
           onViewChange={setCurrentView}
         />
 
-        <div className="flex-1 overflow-auto rounded-lg bg-gray-50 dark:bg-gray-800/50 p-4">
+        <div className="flex-1 overflow-auto rounded-lg bg-gray-50 dark:bg-gray-800/50 p-2">
           {renderView()}
         </div>
       </div>
 
-      <div className="w-80 border-l p-6 overflow-y-auto dark:border-gray-700 bg-gray-50 dark:bg-gray-800/30">
-        <h3 className="text-md font-medium mb-4 text-gray-800 dark:text-white">
+      <div className="w-80 border-l px-4 py-3 overflow-y-auto dark:border-gray-700 bg-gray-50 dark:bg-gray-800/30">
+        <h3 className="text-md font-medium mb-3 text-gray-800 dark:text-white">
           {format(selectedDate, "EEEE',' d 'de' MMMM", { locale: ptBR })}
         </h3>
         <EventList events={getFilteredEventsForDay(selectedDate)} />

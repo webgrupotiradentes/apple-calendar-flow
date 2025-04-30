@@ -11,9 +11,9 @@ const CalendarPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-apple-gray6">
       <Header />
-      <main className="flex-grow p-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-4 flex justify-end">
+      <main className="flex-grow">
+        <div className="max-w-full mx-auto">
+          <div className="px-4 py-2 flex justify-end">
             <CategoryFilter 
               selectedCategories={selectedCategories} 
               setSelectedCategories={setSelectedCategories} 
@@ -22,7 +22,7 @@ const CalendarPage: React.FC = () => {
           <Calendar selectedCategories={selectedCategories} />
         </div>
       </main>
-      <footer className="py-4 text-center text-sm text-apple-gray">
+      <footer className="py-2 text-center text-xs text-apple-gray">
         <p>&copy; {new Date().getFullYear()} Calendar Flow. All rights reserved.</p>
       </footer>
     </div>

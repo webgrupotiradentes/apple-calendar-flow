@@ -50,12 +50,12 @@ const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-2">
       <div className="flex items-center gap-2">
         <CalendarIcon className="h-6 w-6 text-blue-600" />
         <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Calendário</h2>
       </div>
-      <div className="flex items-center gap-4 flex-wrap">
+      <div className="flex items-center gap-3 flex-wrap">
         <ViewSelector currentView={currentView} onViewChange={onViewChange} />
         <Button
           variant="outline"

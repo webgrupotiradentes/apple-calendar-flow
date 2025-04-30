@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -101,7 +100,7 @@
 }
 
 .max-w-6xl {
-  max-width: 90rem !important;
+  max-width: 100% !important;
 }
 
 .card-detalhes {
@@ -112,7 +111,7 @@
 
 .dia {
   border: 0;
-  margin: 2px;
+  margin: 1px;
   border-radius: 10px;
   background: #f7f7f7;
 }
